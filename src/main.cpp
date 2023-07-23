@@ -13,6 +13,7 @@ const char* pass = "0372727797";
 WebServer server(80);
 //=========Biến chứa mã HTML========//
 const char Mainpage[] PROGMEM = R"=====(
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,7 @@ const char Mainpage[] PROGMEM = R"=====(
             }
         }
         //-----Kiểm tra trạng thái chân LED------
-        function getstatusD1D2() {
+        function getstatus_LED() {
             xhttp.open("GET", "getstatus_LED", true);
             xhttp.onreadystatechange = process_json;
             xhttp.send();
@@ -88,14 +89,14 @@ const char Mainpage[] PROGMEM = R"=====(
         function process_json() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
         //------Update data sử dụng javascript
-        var trangthaiD1D2_JSON = xhttp.responseText;
-        var Obj = JSON.parse(trangthaiD1D2_JSON);
+        var trangthai_LED_JSON = xhttp.responseText;
+        var Obj = JSON.parse(trangthai_LED_JSON);
         document.getElementById("trangthai_LED").innerHTML = Obj.LED;
         }
     }
     //---Ham update du lieu tu dong---
     setInterval(function() {
-        getstatusD1D2();
+        getstatus_LED();
     }, 1000);
     </script>
 </body>
@@ -139,6 +140,7 @@ void setup() {
   server.on("onLED", onLED);
   server.on("offLED", offLED);
   server.on("/getstatus_LED", getstatus_LED);
+  server.begin();
 }
 
 void loop() {
