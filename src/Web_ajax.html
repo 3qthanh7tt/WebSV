@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Digital Control</title> I
+    <style> body {
+        text-align: center;
+        }
+
+    h1 {
+        color: #fc068d;
+    }
+
+    a {
+        text-decoration: none; color: #b3e464;
+    }
+    
+    .bt_on {
+        height: 50px;
+        width: 100px;
+        margin: 15px 0;
+        background-color: #df4d4d; border-radius: 20px;
+    }
+
+    .bt_off {
+    height: 50px;
+    width: 100px;
+    margin: 15px 0; background-color: #20db7e;
+    border-radius: 20px;
+    }
+    </style>
+
+<meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>ESP32 Web Server - AJAX</h1>
+    <h1>Tek4.vn</h1>
+    <div>D1 Status: <b><pan id="trangthai01"><pan></b></div>
+    <div>
+        <button class="bt_on" onclick="getdata('onD1')">ON</button>
+        <button class="bt_off" onclick="getdata('offD1')">OFF</button>
+    </div>
+    <div>D2 Status: <b><pan id="trangthai02"><pan></b></div>
+    <div>
