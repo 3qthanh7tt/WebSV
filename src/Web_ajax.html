@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Digital Control</title>
     <style> body {
@@ -14,14 +13,12 @@
     a {
         text-decoration: none; color: #b3e464;
     }
-    
     .bt_on {
         height: 50px;
         width: 100px;
         margin: 15px 0;
         background-color: #df4d4d; border-radius: 20px;
     }
-
     .bt_off {
     height: 50px;
     width: 100px;
@@ -29,22 +26,15 @@
     border-radius: 20px;
     }
     </style>
-
 <meta charset="UTF-8">
 </head>
-
 <body>
     <h1>ESP32 Web Server - AJAX</h1>
     <h1>QThanh</h1>
-    <div>D1 Status: <b><pan id="trangthai01"><pan></b></div>
+    <div>LED Status: <b><pan id="trangthai_LED"><pan></b></div>
     <div>
-        <button class="bt_on" onclick="getdata('onD1')">ON</button>
-        <button class="bt_off" onclick="getdata('offD1')">OFF</button>
-    </div>
-    <div>D2 Status: <b><pan id="trangthai02"><pan></b></div>
-    <div>
-        <button class="bt_on" onclick="getdata('onD2')">ON</button>
-        <button class="bt_off" onclick="getdata('offD2')">OFF</button>
+        <button class="bt_on" onclick="getdata('onLED')">ON</button>
+        <button class="bt_off" onclick="getdata('offLED')">OFF</button>
     </div>
     <div id="reponsetext"></div>
     <script>
@@ -73,9 +63,9 @@
         document.getElementById("reponsetext").innerHTML = ketqua;
             }
         }
-        //-----Kiểm tra trạng thái chân D1 D2------
+        //-----Kiểm tra trạng thái chân LED------
         function getstatusD1D2() {
-            xhttp.open("GET", "getstatusD1D2", true);
+            xhttp.open("GET", "getstatus_LED", true);
             xhttp.onreadystatechange = process_json;
             xhttp.send();
         }
@@ -85,16 +75,13 @@
         //------Update data sử dụng javascript
         var trangthaiD1D2_JSON = xhttp.responseText;
         var Obj = JSON.parse(trangthaiD1D2_JSON);
-        document.getElementById("trangthaiD1").innerHTML = Obj.D1;
-        document.getElementById("trangthaiD2").innerHTML = Obj.D2;
+        document.getElementById("trangthai_LED").innerHTML = Obj.LED;
         }
     }
     //---Ham update du lieu tu dong---
     setInterval(function() {
         getstatusD1D2();
-
     }, 1000);
     </script>
 </body>
-
 </html>
